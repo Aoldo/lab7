@@ -1,5 +1,8 @@
 package tda548;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LabSolver {
 
     public static void main(String[] args) {
@@ -9,10 +12,10 @@ public class LabSolver {
             width = Integer.parseInt(args[0]);
             height = Integer.parseInt(args[1]);
         }
-        Labyrinth l = new Lab(width,height);
+        Labyrinth l = new Lab(width, height);
         System.out.println("\nCreated a random labyrinth:");
         System.out.println(l);
-        boolean success = findPath(0,0,width-1,height-1,l);
+        boolean success = findPath(0, 0, width - 1, height - 1, l);
         if (success) {
             System.out.println("Solution found:");
             System.out.println(l);
@@ -27,11 +30,29 @@ public class LabSolver {
           Då:
                 Gå tillbaka till senaste korsning
                 börja om.
-         */
+        */
+        l.setMark(x0, y0, true);
+        System.out.println(l);
         if ((x0 == x1) && (y0 == y1)) {
             return true;
         }
-        // ...
+        if (l.canMove(Labyrinth.Direction.UP, x0, y0) && !l.getMark(x0, y0 - 1)) {
+            if (findPath(x0, y0 - 1, x1, y1, l))
+                return true;
+        }
+        if (l.canMove(Labyrinth.Direction.RIGHT, x0, y0) && !l.getMark(x0 + 1, y0)) {
+            if (findPath(x0 + 1, y0, x1, y1, l))
+                return true;
+        }
+        if (l.canMove(Labyrinth.Direction.DOWN, x0, y0) && !l.getMark(x0, y0 + 1)) {
+            if (findPath(x0, y0 + 1, x1, y1, l))
+                return true;
+        }
+        if (l.canMove(Labyrinth.Direction.LEFT, x0, y0) && !l.getMark(x0 - 1, y0)) {
+            if (findPath(x0 - 1, y0, x1, y1, l))
+                return true;
+        }
+        l.setMark(x0, y0, false);
         return false;
     }
 
