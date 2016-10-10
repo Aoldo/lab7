@@ -32,7 +32,6 @@ public class LabSolver {
                 börja om.
         */
         l.setMark(x0, y0, true);
-        System.out.println(l);
         if ((x0 == x1) && (y0 == y1)) {
             return true;
         }
