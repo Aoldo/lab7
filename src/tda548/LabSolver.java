@@ -22,7 +22,12 @@ public class LabSolver {
     }
 
     public static boolean findPath(int x0, int y0, int x1, int y1, Labyrinth l) {
-        // ...
+        /*Upprepa tills det inte går, dvs man träffar vägg eller testat alla riktningar i korsning
+                Flytta sig frammåt tills man når en korsning, spara positionen samt riktningar som redan testats, gå i en riktning som inte är sparad
+          Då:
+                Gå tillbaka till senaste korsning
+                börja om.
+         */
         if ((x0 == x1) && (y0 == y1)) {
             return true;
         }
